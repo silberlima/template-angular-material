@@ -1,0 +1,19 @@
+<h2>Dashboard</h2>
+
+<div fxLayout="column" fxLayoutGap="24px">
+  <div
+    fxLayout="row"
+    fxLayout.xs="column"
+    fxLayoutGap="12px"
+    fxLayoutAlign="space-between"
+  >
+    <mat-card
+      class="pointer"
+      *ngFor="let person of persons"
+      [routerLink]="['/person', person.id]"
+    >
+      <mat-card-title>{{ person.name }}</mat-card-title>
+    </mat-card>
+  </div>
+  <app-person-search [label]="'Person search'" (selected)="onSelected($event)"></app-person-search>
+</div>

@@ -1,0 +1,29 @@
+<mat-form-field class="input-width" appearance="fill">
+  <mat-label>{{ label }}</mat-label>
+  <input
+    [matAutocomplete]="auto"
+    matInput
+    placeholder="Person name"
+    #searchBox
+    type="text"
+    (input)="search(searchBox.value)"
+  />
+
+  <button
+    mat-icon-button
+    matSuffix
+    *ngIf="searchBox.value"
+    (click)="searchBox.value = ''"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <mat-autocomplete
+    #auto="matAutocomplete"
+    (optionSelected)="onSelected($event);searchBox.value = ''"
+  >
+    <mat-option *ngFor="let person of persons$ | async" [value]="person">
+      {{ person.name }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
